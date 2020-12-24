@@ -1,0 +1,4 @@
+rootProject.name = "Venucity"
+include ':app'
+include ':domain'
+include ':unittesting'

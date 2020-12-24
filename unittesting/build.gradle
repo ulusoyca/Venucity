@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.build_tools_version
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
+        versionCode rootProject.ext.version_code
+        versionName rootProject.ext.version_name
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-test:$rootProject.coroutinesTestVersion"
+    api "junit:junit:$rootProject.junitVersion"
+    api "androidx.arch.core:core-testing:$rootProject.archCoreTestingVersion"
+    api "com.google.truth:truth:$rootProject.truthVersion"
+    api "org.mockito:mockito-core:$rootProject.mockitoCoreVersion"
+    api "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.mockitoKotlinVersion"
+    api "androidx.test:core:$rootProject.testCoreVersion"
+    api "org.robolectric:robolectric:$rootProject.robolectricVersion"
+    api "org.mockito:mockito-inline:$rootProject.mockito_inline_version"
+}
