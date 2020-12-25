@@ -12,7 +12,7 @@ import com.ulusoyapps.venucity.domain.interactors.GetLiveLocationUseCase
 import com.ulusoyapps.venucity.domain.repositories.LocationRepository
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
 class GetLiveLocationUseCaseTest : BaseArchTest() {
@@ -33,11 +33,12 @@ class GetLiveLocationUseCaseTest : BaseArchTest() {
         LatLng(
             latitude = Latitude(0f),
             longitude = Longitude(0f)
-        )
+        ),
+        0,
     )
 
     @Test
-    fun `should get live location`() = runBlocking {
+    fun `should get live location`() = runBlockingTest {
         whenever(locationRepository.getLiveLocation(0)).thenReturn(flow)
         getLiveLocationsUseCase(0).collectIndexed { index, value ->
             if (index == 0) {
