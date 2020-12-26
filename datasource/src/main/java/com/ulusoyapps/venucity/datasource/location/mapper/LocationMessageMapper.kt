@@ -3,6 +3,7 @@ package com.ulusoyapps.venucity.datasource.location.mapper
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationMessage
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationNotAvailable
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationReadError
+import com.ulusoyapps.venucity.datasource.mapper.EntityMapper
 import com.ulusoyapps.venucity.domain.entities.LocationMessage
 import com.ulusoyapps.venucity.domain.entities.LocationNotAvailable
 import com.ulusoyapps.venucity.domain.entities.LocationReadError

@@ -1,6 +1,7 @@
 package com.ulusoyapps.venucity.datasource.location.mapper
 
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocation
+import com.ulusoyapps.venucity.datasource.mapper.EntityMapper
 import com.ulusoyapps.venucity.domain.entities.LatLng
 import com.ulusoyapps.venucity.domain.entities.Latitude
 import com.ulusoyapps.venucity.domain.entities.Location

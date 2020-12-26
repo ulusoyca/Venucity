@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.domain
+package com.ulusoyapps.venucity.domain.interactors.location
 
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
@@ -8,7 +8,6 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.ulusoyapps.unittesting.BaseArchTest
 import com.ulusoyapps.venucity.domain.entities.*
-import com.ulusoyapps.venucity.domain.interactors.location.GetLiveLocationUseCase
 import com.ulusoyapps.venucity.domain.repositories.location.LocationRepository
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow

@@ -19,7 +19,6 @@ import com.ulusoyapps.venucity.domain.entities.LocationReadError
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert.*
 import org.junit.Test
 
 class LocationDataRepositoryTest : BaseArchTest() {
