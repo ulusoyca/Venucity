@@ -24,6 +24,11 @@ ext {
     version_code = 1
     version_name = "0.1"
 
+    // Jetpack
+    room_version = "2.3.0-alpha04"
+    room_coroutines_version = "2.1.0-alpha04"
+    core_ktx_version = "1.5.0-alpha05"
+
     //Test dependencies
     junitVersion = '4.13.1'
     mockitoCoreVersion = '3.6.28'

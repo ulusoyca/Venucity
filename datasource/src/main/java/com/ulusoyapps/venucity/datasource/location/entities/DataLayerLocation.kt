@@ -1,7 +1,8 @@
 package com.ulusoyapps.venucity.datasource.location.entities
 
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
+
 data class DataLayerLocation(
-    val latitude: Float,
-    val longitude: Float,
+    val latLng: DataLayerLatLng,
     val timestamp: Long,
 )

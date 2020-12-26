@@ -6,6 +6,7 @@ import com.github.michaelbull.result.get
 import com.google.common.truth.Truth
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
 import com.ulusoyapps.venucity.datasource.location.datasource.LocationDataSource
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocation
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationNotAvailable
@@ -50,7 +51,7 @@ class VenueDataRepositoryTest {
         "name",
         "desc",
         "imageUrl",
-        LatLng(0.0, 0.0),
+        DataLayerLatLng(0.0, 0.0),
     )
 
     private val dataLayerFlow = flow {
