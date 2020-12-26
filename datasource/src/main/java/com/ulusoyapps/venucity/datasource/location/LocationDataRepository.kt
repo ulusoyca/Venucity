@@ -6,7 +6,7 @@ import com.ulusoyapps.venucity.datasource.location.mapper.LocationMapper
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMessageMapper
 import com.ulusoyapps.venucity.domain.entities.Location
 import com.ulusoyapps.venucity.domain.entities.LocationMessage
-import com.ulusoyapps.venucity.domain.repositories.LocationRepository
+import com.ulusoyapps.venucity.domain.repositories.location.LocationRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
