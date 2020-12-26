@@ -26,7 +26,6 @@ android {
 dependencies {
     implementation project(":domain")
     testImplementation project(":unittesting")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
@@ -41,4 +40,5 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
 
+    implementation "com.michael-bull.kotlin-result:kotlin-result:$result_version"
 }

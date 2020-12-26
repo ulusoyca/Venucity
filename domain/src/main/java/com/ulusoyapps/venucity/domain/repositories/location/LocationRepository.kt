@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.domain.repositories
+package com.ulusoyapps.venucity.domain.repositories.location
 
 import com.github.michaelbull.result.Result
 import com.ulusoyapps.venucity.domain.entities.Location

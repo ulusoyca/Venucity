@@ -10,6 +10,7 @@ import com.ulusoyapps.venucity.datasource.location.datasource.LocationDataSource
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocation
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationNotAvailable
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationReadError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMapper
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMessageMapper
 import com.ulusoyapps.venucity.domain.entities.LatLng
@@ -19,7 +20,6 @@ import com.ulusoyapps.venucity.domain.entities.LocationReadError
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Assert.*
 import org.junit.Test
 
 class LocationDataRepositoryTest : BaseArchTest() {
@@ -27,9 +27,10 @@ class LocationDataRepositoryTest : BaseArchTest() {
     private val mockLocationDatasource: LocationDataSource = mock()
     private val locationMapper: LocationMapper = mock()
     private val locationMessageMapper: LocationMessageMapper = mock()
+    private val dataLayerLatLng = DataLayerLatLng(0.0, 1.0)
     private val dataLayerFlow = flow {
         emit(
-            Ok(DataLayerLocation(0.0f, 1.0f, timestamp = 0)),
+            Ok(DataLayerLocation(dataLayerLatLng, timestamp = 0)),
         )
         emit(
             Err(DataLayerLocationReadError),
@@ -46,7 +47,7 @@ class LocationDataRepositoryTest : BaseArchTest() {
             locationMapper,
             locationMessageMapper,
         )
-        val dataLayerLocation = DataLayerLocation(0.0f, 1.0f, timestamp = 0)
+        val dataLayerLocation = DataLayerLocation(dataLayerLatLng, timestamp = 0)
         val domainLocation = Location(LatLng(0.0, 1.0), 0)
         whenever(locationMapper.mapToDomainEntity(dataLayerLocation)).thenReturn(domainLocation)
         whenever(locationMessageMapper.mapToDomainEntity(DataLayerLocationReadError)).thenReturn(LocationReadError)

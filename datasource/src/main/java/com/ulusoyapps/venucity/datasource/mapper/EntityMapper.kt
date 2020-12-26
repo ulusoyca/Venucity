@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.datasource.location.mapper
+package com.ulusoyapps.venucity.datasource.mapper
 
 interface EntityMapper<C, E> {
     fun mapToDomainEntity(type: C): E
