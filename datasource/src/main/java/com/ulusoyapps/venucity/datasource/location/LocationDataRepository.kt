@@ -1,9 +1,10 @@
 package com.ulusoyapps.venucity.datasource.location
 
 import com.github.michaelbull.result.*
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationMessage
+import com.ulusoyapps.venucity.datasource.entities.DataLayerMessageMapper
 import com.ulusoyapps.venucity.datasource.location.datasource.LocationDataSource
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMapper
-import com.ulusoyapps.venucity.datasource.location.mapper.LocationMessageMapper
 import com.ulusoyapps.venucity.domain.entities.Location
 import com.ulusoyapps.venucity.domain.entities.LocationMessage
 import com.ulusoyapps.venucity.domain.repositories.location.LocationRepository
@@ -15,7 +16,7 @@ class LocationDataRepository
 @Inject constructor(
     private val mockLocationDatasource: LocationDataSource,
     private val locationMapper: LocationMapper,
-    private val locationMessageMapper: LocationMessageMapper,
+    private val locationMessageMapper: DataLayerMessageMapper,
 ) : LocationRepository {
     override suspend fun getLiveLocation(
         locationUpdateInterval: Long,
@@ -30,11 +31,9 @@ class LocationDataRepository
                         )
                     },
                     failure = { dataLayerLocationMessage ->
-                        Err(
-                            locationMessageMapper.mapToDomainEntity(
-                                dataLayerLocationMessage
-                            )
-                        )
+                        val message = locationMessageMapper.mapToDomainEntity(dataLayerLocationMessage)
+                        assert(message is LocationMessage)
+                        Err(message as LocationMessage)
                     }
                 )
             }

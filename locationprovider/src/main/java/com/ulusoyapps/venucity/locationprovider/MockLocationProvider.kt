@@ -5,9 +5,9 @@ import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.mapBoth
 import com.ulusoyapps.coroutines.DispatcherProvider
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationMessage
 import com.ulusoyapps.venucity.datasource.location.datasource.mock.MockLocationSource
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocation
-import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationMessage
 import com.ulusoyapps.venucity.locationprovider.mapper.LocationMapper
 import com.ulusoyapps.venucity.locationprovider.mapper.LocationMessageMapper
 import kotlinx.coroutines.delay

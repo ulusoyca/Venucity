@@ -4,10 +4,10 @@ import com.ulusoyapps.venucity.cache.entities.CachedVenueMessage
 import com.ulusoyapps.venucity.cache.entities.VenueInsertionError
 import com.ulusoyapps.venucity.cache.entities.VenueNotFound
 import com.ulusoyapps.venucity.cache.entities.VenuesFetchError
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenueAddFailure
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenueDoesntExist
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenueMessage
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenuesFetchError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueAddFailure
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueDoesntExist
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueMessage
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenuesFetchError
 import javax.inject.Inject
 
 class CachedVenueMessageMapper

@@ -7,5 +7,6 @@ data class DataLayerVenue(
     val name: String,
     val desc: String,
     val imageUrl: String,
-    val coordinate: DataLayerLatLng
+    val coordinate: DataLayerLatLng,
+    val isFavorite: Boolean,
 )

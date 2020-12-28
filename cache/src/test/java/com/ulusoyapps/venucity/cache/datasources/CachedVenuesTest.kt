@@ -13,15 +13,11 @@ import com.ulusoyapps.venucity.cache.mapper.CachedVenueMessageMapper
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenueAddFailure
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenueMessage
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenuesFetchError
-import com.ulusoyapps.venucity.datasource.venue.mapper.VenueMapper
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class CachedVenuesTest: BaseArchTest() {
 
@@ -49,13 +45,14 @@ class CachedVenuesTest: BaseArchTest() {
         "desc",
         "imageUrl",
         DataLayerLatLng(0.0, 0.0),
+        isFavorite = true,
     )
 
     @Test
     fun `addVenue succeeds`() = runBlocking {
         whenever(venueMapper.mapToCacheEntity(dataVenue)).thenReturn(cachedVenue)
         whenever(venueDao.addVenue(cachedVenue)).thenReturn(1)
-        val expected = cachedVenues.addVenue(dataVenue)
+        val expected = cachedVenues.addFavoriteVenue(dataVenue)
         Truth.assertThat(expected).isEqualTo(Ok(Unit))
     }
 
@@ -64,7 +61,7 @@ class CachedVenuesTest: BaseArchTest() {
         whenever(venueMapper.mapToCacheEntity(dataVenue)).thenReturn(cachedVenue)
         whenever(venueDao.addVenue(cachedVenue)).thenReturn(-1L)
         whenever(messageMapper.mapToDataLayerEntity(VenueInsertionError)).thenReturn(DataLayerVenueAddFailure)
-        val expected = cachedVenues.addVenue(dataVenue)
+        val expected = cachedVenues.addFavoriteVenue(dataVenue)
         Truth.assertThat(expected).isEqualTo(Err(DataLayerVenueAddFailure))
     }
 
@@ -72,7 +69,7 @@ class CachedVenuesTest: BaseArchTest() {
     fun `should return all the venues`() = runBlocking {
         whenever(venueDao.getAllVenues()).thenReturn(flowOf(listOf(cachedVenue)))
         whenever(venueMapper.mapToDataLayerEntityList(listOf(cachedVenue))).thenReturn(listOf(dataVenue))
-        cachedVenues.getAllVenues().collect {
+        cachedVenues.getAllFavoriteVenues().collect {
             Truth.assertThat(it).isEqualTo(Ok(listOf(dataVenue)))
         }
     }
@@ -81,7 +78,7 @@ class CachedVenuesTest: BaseArchTest() {
     fun `should return error if fetching all venues fails`() = runBlocking {
         whenever(venueDao.getAllVenues()).thenReturn(flowOf(null))
         whenever(messageMapper.mapToDataLayerEntity(VenuesFetchError)).thenReturn(DataLayerVenuesFetchError)
-        cachedVenues.getAllVenues().collect {
+        cachedVenues.getAllFavoriteVenues().collect {
             Truth.assertThat(it).isEqualTo(Err(DataLayerVenuesFetchError))
         }
     }
@@ -89,7 +86,7 @@ class CachedVenuesTest: BaseArchTest() {
     @Test
     fun `removeVenue succeeds`() = runBlocking {
         whenever(venueDao.removeByVenueId("cachedVenue")).thenReturn(1)
-        val expected = cachedVenues.removeVenue("cachedVenue")
+        val expected = cachedVenues.removeFavoriteVenue("cachedVenue")
         Truth.assertThat(expected).isEqualTo(Ok(Unit))
     }
 
@@ -97,7 +94,7 @@ class CachedVenuesTest: BaseArchTest() {
     fun `removeVenue fails`() = runBlocking {
         whenever(venueDao.removeByVenueId("cachedVenue")).thenReturn(0)
         whenever(messageMapper.mapToDataLayerEntity(VenueNotFound)).thenReturn(DataLayerVenuesFetchError)
-        val expected = cachedVenues.removeVenue("cachedVenue")
+        val expected = cachedVenues.removeFavoriteVenue("cachedVenue")
         Truth.assertThat(expected).isEqualTo(Err(DataLayerVenuesFetchError))
     }
 }

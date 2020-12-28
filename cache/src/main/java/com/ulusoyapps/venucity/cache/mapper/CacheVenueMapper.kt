@@ -25,7 +25,8 @@ class CacheVenueMapper
             type.name,
             type.desc,
             type.imageUrl,
-            cacheLatLngMapper.mapToDataLayerEntity(type.coordinate)
+            cacheLatLngMapper.mapToDataLayerEntity(type.coordinate),
+            isFavorite = true,
         )
     }
 

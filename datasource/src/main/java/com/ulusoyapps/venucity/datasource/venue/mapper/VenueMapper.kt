@@ -16,7 +16,8 @@ class VenueMapper
             name = type.name,
             desc = type.desc,
             imageUrl = type.imageUrl,
-            coordinate = latLngMapper.mapToDomainEntity(type.coordinate)
+            coordinate = latLngMapper.mapToDomainEntity(type.coordinate),
+            isFavorite = type.isFavorite,
         )
     }
 
@@ -26,8 +27,9 @@ class VenueMapper
             name = type.name,
             desc = type.desc,
             imageUrl = type.imageUrl,
-            coordinate = latLngMapper.mapToDataLayerEntity(type.coordinate)
-        );
+            coordinate = latLngMapper.mapToDataLayerEntity(type.coordinate),
+            isFavorite = type.isFavorite,
+        )
     }
 
     override fun mapToDomainEntityList(type: List<DataLayerVenue>): List<Venue> {

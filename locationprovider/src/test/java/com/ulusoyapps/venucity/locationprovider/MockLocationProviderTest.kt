@@ -7,8 +7,9 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.ulusoyapps.unittesting.BaseArchTest
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationReadError
 import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocation
-import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocationReadError
 import com.ulusoyapps.venucity.locationprovider.entity.MockLocation
 import com.ulusoyapps.venucity.locationprovider.entity.SourceReadError
 import com.ulusoyapps.venucity.locationprovider.mapper.LocationMapper
@@ -31,8 +32,8 @@ class MockLocationProviderTest : BaseArchTest() {
             MockLocation(2.0, 3.0, timestamp = 0),
         )
         val dataLocations = listOf(
-            DataLayerLocation(0.0f, 1.0f, timestamp = 0),
-            DataLayerLocation(2.0f, 3.0f, timestamp = 0),
+            DataLayerLocation(DataLayerLatLng(0.0, 1.0), timestamp = 0),
+            DataLayerLocation(DataLayerLatLng(2.0, 3.0), timestamp = 0),
         )
         whenever(csvLocationParser.parseCsvFile(any())).thenReturn(Ok(locations))
         val mockLocationProvider =
@@ -73,7 +74,9 @@ class MockLocationProviderTest : BaseArchTest() {
                 locationMapper,
                 locationMessageMapper
             )
-        whenever(locationMessageMapper.mapToDataLayerEntity(SourceReadError)).thenReturn(DataLayerLocationReadError)
+        whenever(locationMessageMapper.mapToDataLayerEntity(SourceReadError)).thenReturn(
+            DataLayerLocationReadError
+        )
         mockLocationProvider.getLiveLocation(1000, 5).collect {
             Truth.assertThat(it).isEqualTo(Err(DataLayerLocationReadError))
         }

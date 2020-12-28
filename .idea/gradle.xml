@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/datasource" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/locationprovider" />
+            <option value="$PROJECT_DIR$/remote" />
             <option value="$PROJECT_DIR$/unittesting" />
           </set>
         </option>
