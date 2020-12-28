@@ -14,13 +14,12 @@ import com.ulusoyapps.venucity.domain.repositories.venue.VenueRepository
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import org.junit.Test
 
-class GetAllVenuesUseCaseTest : BaseArchTest() {
+class GetAllFavoriteVenuesUseCaseTest : BaseArchTest() {
 
     private val venueRepository: VenueRepository = mock()
-    private val getAllVenuesUseCase = GetAllVenuesUseCase(venueRepository)
+    private val getAllVenuesUseCase = GetAllFavoriteVenuesUseCase(venueRepository)
 
     private val flow = flow {
         emit(Err(VenuesFetchError))
@@ -33,11 +32,12 @@ class GetAllVenuesUseCaseTest : BaseArchTest() {
         "desc",
         "imageUrl",
         LatLng(0.0, 0.0),
+        isFavorite = true,
     )
 
     @Test
     fun `should get all venues`() = runBlocking {
-        whenever(venueRepository.getAllVenues()).thenReturn(flow)
+        whenever(venueRepository.getAllFavoriteVenues()).thenReturn(flow)
 
         getAllVenuesUseCase().collectIndexed { index, value ->
             if (index == 0) {

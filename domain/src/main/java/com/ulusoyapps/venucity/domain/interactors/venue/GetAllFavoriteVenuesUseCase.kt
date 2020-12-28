@@ -7,11 +7,11 @@ import com.ulusoyapps.venucity.domain.repositories.venue.VenueRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetAllVenuesUseCase
+class GetAllFavoriteVenuesUseCase
 @Inject constructor(
     private val venueRepository: VenueRepository
 ) {
     suspend operator fun invoke(): Flow<Result<List<Venue>, VenueMessage>> {
-        return venueRepository.getAllVenues()
+        return venueRepository.getAllFavoriteVenues()
     }
 }

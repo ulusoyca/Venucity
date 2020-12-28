@@ -47,4 +47,9 @@ ext {
     coroutines_version = "1.4.2"
     timber_version = "4.7.1"
     result_version= "1.1.9"
+    retrofit2_moshi_converter_version = "2.9.0"
+    retrofit2_version = "2.9.0"
+    retrofit_mockwebserver_version = "4.9.0"
+    moshi_version = "1.11.0"
+    okhttp_version = "4.9.0"
 }

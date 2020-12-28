@@ -11,21 +11,21 @@ import com.ulusoyapps.venucity.domain.repositories.venue.VenueRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
-class RemoveVenuesUseCaseTest : BaseArchTest() {
+class RemoveFavoriteVenueUseCaseTest : BaseArchTest() {
     private val venueRepository: VenueRepository = mock()
-    private val removeVenueUseCase = RemoveVenuesUseCase(venueRepository)
+    private val removeVenueUseCase = RemoveFavoriteVenueUseCase(venueRepository)
 
     @Test
     fun `should remove venue`() = runBlocking {
         val expected = Ok(Unit)
-        whenever(venueRepository.removeVenue("id")).thenReturn(expected)
+        whenever(venueRepository.removeFavoriteVenue("id")).thenReturn(expected)
         Truth.assertThat(removeVenueUseCase("id")).isEqualTo(expected)
     }
 
     @Test
     fun `should fail adding pet`() = runBlocking {
         val expected = Err(VenueDoesntExist)
-        whenever(venueRepository.removeVenue("id")).thenReturn(expected)
+        whenever(venueRepository.removeFavoriteVenue("id")).thenReturn(expected)
         Truth.assertThat(removeVenueUseCase("id")).isEqualTo(expected)
     }
 }

@@ -20,5 +20,9 @@ data class Venue(
     /**
      * [LatLng] of the location in maps
      */
-    val coordinate: LatLng
+    val coordinate: LatLng,
+    /**
+     * True if this venue is favorite of user
+     */
+    val isFavorite: Boolean
 )
