@@ -11,4 +11,5 @@ interface VenueRepository {
     suspend fun removeFavoriteVenue(venueId: String): Result<Unit, VenueMessage>
     suspend fun getAllFavoriteVenues(): Flow<Result<List<Venue>, VenueMessage>>
     suspend fun getNearbyVenues(latLng: LatLng, maxAmount: Int): Result<List<Venue>, VenueMessage>
+    suspend fun getResolvedNearbyVenues(latLng: LatLng, maxAmount: Int): Flow<Result<List<Venue>, VenueMessage>>
 }
