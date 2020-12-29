@@ -24,5 +24,5 @@ data class Venue(
     /**
      * True if this venue is favorite of user
      */
-    val isFavorite: Boolean
+    val isFavorite: Boolean?
 )

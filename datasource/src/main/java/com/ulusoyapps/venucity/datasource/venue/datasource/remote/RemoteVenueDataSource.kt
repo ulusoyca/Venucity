@@ -22,7 +22,7 @@ class RemoteVenueDataSource
         throw NotImplementedError()
     }
 
-    override suspend fun getAllVenues(): Flow<Result<List<DataLayerVenue>, DataLayerVenueMessage>> {
+    override suspend fun getAllFavoriteVenues(): Flow<Result<List<DataLayerVenue>, DataLayerVenueMessage>> {
         throw NotImplementedError()
     }
 

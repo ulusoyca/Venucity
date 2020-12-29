@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
 interface VenueDataSource {
     suspend fun addVenue(venue: DataLayerVenue): Result<Unit, DataLayerVenueMessage>
     suspend fun removeVenue(venueId: String): Result<Unit, DataLayerVenueMessage>
-    suspend fun getAllVenues(): Flow<Result<List<DataLayerVenue>, DataLayerVenueMessage>>
+    suspend fun getAllFavoriteVenues(): Flow<Result<List<DataLayerVenue>, DataLayerVenueMessage>>
     suspend fun getNearbyVenues(latLng: LatLng, maxAmount: Int): Result<List<DataLayerVenue>, DataLayerVenueMessage>
 }

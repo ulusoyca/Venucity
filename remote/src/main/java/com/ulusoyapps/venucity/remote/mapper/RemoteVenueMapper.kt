@@ -39,7 +39,7 @@ class RemoteVenueMapper
                 shortDescription.first().value,
                 listImage,
                 DataLayerLatLng(location.coordinates.first(), location.coordinates.last()),
-                isFavorite = false,
+                isFavorite = null,
             )
         }
     }

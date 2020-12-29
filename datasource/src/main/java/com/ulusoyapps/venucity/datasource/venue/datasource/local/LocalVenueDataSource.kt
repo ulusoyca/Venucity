@@ -22,7 +22,7 @@ class LocalVenueDataSource
         return localVenueSource.removeFavoriteVenue(venueId)
     }
 
-    override suspend fun getAllVenues(): Flow<Result<List<DataLayerVenue>, DataLayerVenueMessage>> {
+    override suspend fun getAllFavoriteVenues(): Flow<Result<List<DataLayerVenue>, DataLayerVenueMessage>> {
         return localVenueSource.getAllFavoriteVenues()
     }
 
