@@ -3,6 +3,7 @@ package com.ulusoyapps.venucity.datasource.venue
 import com.github.michaelbull.result.*
 import com.ulusoyapps.coroutines.DispatcherProvider
 import com.ulusoyapps.venucity.datasource.entities.DataLayerMessageMapper
+import com.ulusoyapps.venucity.datasource.mapper.LatLngMapper
 import com.ulusoyapps.venucity.datasource.venue.datasource.VenueDataSource
 import com.ulusoyapps.venucity.datasource.venue.mapper.VenueMapper
 import com.ulusoyapps.venucity.domain.entities.LatLng
@@ -15,11 +16,20 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Named
 
-class VenueDataRepository(
+const val REMOTE_VENUE_DATA_SOURCE = "Remote"
+const val LOCAL_VENUE_DATA_SOURCE = "Local"
+
+class VenueDataRepository
+@Inject constructor(
+    @Named(LOCAL_VENUE_DATA_SOURCE)
     private val localVenueDataSource: VenueDataSource,
+    @Named(REMOTE_VENUE_DATA_SOURCE)
     private val remoteVenueDataSource: VenueDataSource,
     private val venueMapper: VenueMapper,
+    private val latLngMapper: LatLngMapper,
     private val venueMessageMapper: DataLayerMessageMapper,
     private val dispatcherProvider: DispatcherProvider,
 ) : VenueRepository {
@@ -66,7 +76,10 @@ class VenueDataRepository(
         latLng: LatLng,
         maxAmount: Int
     ): Result<List<Venue>, VenueMessage> {
-        return remoteVenueDataSource.getNearbyVenues(latLng, maxAmount).mapBoth(
+        return remoteVenueDataSource.getNearbyVenues(
+            latLngMapper.mapToDataLayerEntity(latLng),
+            maxAmount
+        ).mapBoth(
             success = { success ->
                 Ok(venueMapper.mapToDomainEntityList(success))
             },

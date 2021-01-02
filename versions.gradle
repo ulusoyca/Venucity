@@ -32,6 +32,7 @@ ext {
     fragment_version = '1.2.5'
     compose_version = '1.0.0-alpha09'
     lifecycle_version = '2.3.0-rc01'
+    material_version = '1.3.0-beta01'
 
     //Test dependencies
     junitVersion = '4.13.1'
@@ -54,6 +55,7 @@ ext {
     retrofit2_moshi_converter_version = "2.9.0"
     retrofit2_version = "2.9.0"
     retrofit_mockwebserver_version = "4.9.0"
+    retrofit_mock_web_server = "4.7.2"
     moshi_version = "1.11.0"
     okhttp_version = "4.9.0"
 }

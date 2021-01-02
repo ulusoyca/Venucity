@@ -57,7 +57,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit2_moshi_converter_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.7.2")
+    testImplementation("com.squareup.okhttp3:mockwebserver:$retrofit_mock_web_server")
 
     implementation "com.michael-bull.kotlin-result:kotlin-result:$result_version"
 

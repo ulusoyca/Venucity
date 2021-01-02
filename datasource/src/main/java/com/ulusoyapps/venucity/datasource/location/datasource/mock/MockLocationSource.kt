@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MockLocationSource {
     suspend fun getLiveLocation(
-        locationUpdateInterval: Long,
+        locationUpdateIntervalTimeMillisec: Long,
         numberOfIntervals: Int,
     ): Flow<Result<DataLayerLocation, DataLayerLocationMessage>>
 }

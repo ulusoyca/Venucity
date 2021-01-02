@@ -65,7 +65,7 @@ abstract class BaseArchTest {
         }
     }
 
-    //https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#8
+    // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#8
     fun <T> LiveData<T>.getOrAwaitValue(
         time: Long = 2,
         timeUnit: TimeUnit = SECONDS,
@@ -89,7 +89,6 @@ abstract class BaseArchTest {
             if (!latch.await(time, timeUnit)) {
                 throw TimeoutException("LiveData value was never set.")
             }
-
         } finally {
             this.removeObserver(observer)
         }

@@ -5,9 +5,9 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RestaurantService {
-    @GET("venues?lat=latitude&lon=longitude}")
+    @GET("venues?")
     suspend fun getRestaurants(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double,
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
     ): Results
 }

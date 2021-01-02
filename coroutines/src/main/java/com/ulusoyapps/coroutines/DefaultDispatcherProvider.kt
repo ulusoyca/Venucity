@@ -1,3 +1,6 @@
 package com.ulusoyapps.coroutines
 
-class DefaultDispatcherProvider : DispatcherProvider
+import javax.inject.Inject
+
+class DefaultDispatcherProvider
+@Inject constructor() : DispatcherProvider
