@@ -2,6 +2,8 @@ package com.ulusoyapps.venucity.domain.entities
 
 sealed class DomainMessage
 
+object SucceededVenueOperation : VenueMessage()
+
 open class VenueMessage : DomainMessage()
 object VenueAddFailure : VenueMessage()
 object VenueDoesntExist : VenueMessage()
