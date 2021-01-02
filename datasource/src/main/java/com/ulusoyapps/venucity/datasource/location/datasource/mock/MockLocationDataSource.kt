@@ -12,9 +12,9 @@ class MockLocationDataSource
     private val mockLocationDataSource: MockLocationSource
 ) : LocationDataSource {
     override suspend fun getLiveLocation(
-        locationUpdateInterval: Long,
+        locationUpdateIntervalTimeMillisec: Long,
         numberOfIntervals: Int
     ): Flow<Result<DataLayerLocation, DataLayerLocationMessage>> {
-        return mockLocationDataSource.getLiveLocation(locationUpdateInterval, numberOfIntervals)
+        return mockLocationDataSource.getLiveLocation(locationUpdateIntervalTimeMillisec, numberOfIntervals)
     }
 }

@@ -1,6 +1,8 @@
 package com.ulusoyapps.venucity.datasource.venue.datasource.local
 
 import com.github.michaelbull.result.Result
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
+import com.ulusoyapps.venucity.datasource.entities.DataLayerMessage
 import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueMessage
 import com.ulusoyapps.venucity.datasource.venue.datasource.VenueDataSource
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
@@ -27,9 +29,9 @@ class LocalVenueDataSource
     }
 
     override suspend fun getNearbyVenues(
-        latLng: LatLng,
+        latLng: DataLayerLatLng,
         maxAmount: Int
-    ): Result<List<DataLayerVenue>, DataLayerVenueMessage> {
+    ): Result<List<DataLayerVenue>, DataLayerMessage> {
         throw NotImplementedError()
     }
 }

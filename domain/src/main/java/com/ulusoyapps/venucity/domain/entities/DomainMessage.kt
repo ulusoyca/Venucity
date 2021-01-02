@@ -9,8 +9,8 @@ object VenueAddFailure : VenueMessage()
 object VenueDoesntExist : VenueMessage()
 object VenuesFetchError : VenueMessage()
 
-object NetworkError : DomainMessage()
-object HttpError : DomainMessage()
+object NetworkError : VenueMessage()
+object HttpError : VenueMessage()
 
 open class LocationMessage : DomainMessage()
 object LocationReadError : LocationMessage()

@@ -3,6 +3,7 @@ package com.ulusoyapps.venucity.datasource.venue.datasource.remote
 import com.github.michaelbull.result.Result
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
 import com.ulusoyapps.venucity.datasource.entities.DataLayerMessage
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueMessage
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
 
 interface RemoteVenueSource {

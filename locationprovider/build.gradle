@@ -40,6 +40,9 @@ dependencies {
     implementation project(":coroutines")
     implementation project(":datasource")
 
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 

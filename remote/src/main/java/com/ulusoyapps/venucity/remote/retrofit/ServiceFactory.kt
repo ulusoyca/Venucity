@@ -14,8 +14,8 @@ private const val WOLT_BASE_LIBRARY = "https://restaurant-api.wolt.fi/v3/"
 
 object ServiceFactory {
 
-    private val baseRetrofitBuilder by lazy {
-        Retrofit.Builder()
+    fun makeRestaurantService(): RestaurantService {
+        return Retrofit.Builder()
             .client(makeOkHttpClient())
             .baseUrl(WOLT_BASE_LIBRARY)
             .addConverterFactory(MoshiConverterFactory.create())

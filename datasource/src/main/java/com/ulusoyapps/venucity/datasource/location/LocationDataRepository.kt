@@ -1,7 +1,6 @@
 package com.ulusoyapps.venucity.datasource.location
 
 import com.github.michaelbull.result.*
-import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationMessage
 import com.ulusoyapps.venucity.datasource.entities.DataLayerMessageMapper
 import com.ulusoyapps.venucity.datasource.location.datasource.LocationDataSource
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMapper
@@ -19,10 +18,10 @@ class LocationDataRepository
     private val locationMessageMapper: DataLayerMessageMapper,
 ) : LocationRepository {
     override suspend fun getLiveLocation(
-        locationUpdateInterval: Long,
+        locationUpdateIntervalTimeMillisec: Long,
         numberOfIntervals: Int,
     ): Flow<Result<Location, LocationMessage>> {
-        return mockLocationDatasource.getLiveLocation(locationUpdateInterval, numberOfIntervals)
+        return mockLocationDatasource.getLiveLocation(locationUpdateIntervalTimeMillisec, numberOfIntervals)
             .map {
                 it.mapBoth(
                     success = { success ->

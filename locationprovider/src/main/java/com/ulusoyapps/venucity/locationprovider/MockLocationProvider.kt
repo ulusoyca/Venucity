@@ -14,6 +14,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
 import javax.inject.Inject
 
 class MockLocationProvider
@@ -25,7 +26,7 @@ class MockLocationProvider
 ) : MockLocationSource {
 
     override suspend fun getLiveLocation(
-        locationUpdateInterval: Long,
+        locationUpdateIntervalTimeMillisec: Long,
         numberOfIntervals: Int
     ): Flow<Result<DataLayerLocation, DataLayerLocationMessage>> = flow {
         val locationList = csvLocationParser.parseCsvFile(R.raw.mock_locations)
@@ -34,11 +35,17 @@ class MockLocationProvider
                 var counter = 0
                 locations.asSequence()
                     .repeat()
-                    .takeWhile { counter < numberOfIntervals }
+                    .takeWhile {
+                        if (numberOfIntervals < 0)
+                            true
+                        else
+                            counter < numberOfIntervals
+                    }
                     .forEach { location ->
                         counter++
-                        delay(locationUpdateInterval)
+                        Timber.d("New location lat: ${location.latitude} & lng: ${location.latitude}")
                         emit(Ok(locationMapper.mapToDataLayerEntity(location)))
+                        delay(locationUpdateIntervalTimeMillisec)
                     }
             },
             failure = {

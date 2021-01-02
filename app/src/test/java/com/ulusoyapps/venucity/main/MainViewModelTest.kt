@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.main.home
+package com.ulusoyapps.venucity.main
 
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
@@ -15,14 +15,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
-class HomeViewModelTest : BaseArchTest() {
+class MainViewModelTest : BaseArchTest() {
 
     private val getLiveLocationUseCase: GetLiveLocationUseCase = mock()
     private val addFavoriteVenueUseCase: AddFavoriteVenueUseCase = mock()
     private val removeFavoriteVenueUseCase: RemoveFavoriteVenueUseCase = mock()
     private val getResolvedNearbyVenuesUseCase: GetResolvedNearbyVenuesUseCase = mock()
 
-    private val homeViewModel = HomeViewModel(
+    private val homeViewModel = MainViewModel(
         getLiveLocationUseCase,
         addFavoriteVenueUseCase,
         removeFavoriteVenueUseCase,
@@ -43,22 +43,26 @@ class HomeViewModelTest : BaseArchTest() {
 
     private val firstLatLng = LatLng(0.0, 0.0)
     private val secondLatLng = LatLng(1.0, 1.0)
-    private val firstVenueList = listOf(Venue(
-        id = "first",
-        isFavorite = false,
-        imageUrl = "imageUrl",
-        name = "name",
-        coordinate = firstLatLng,
-        desc = "desc"
-    ))
-    private val secondVenueList = listOf(Venue(
-        id = "second",
-        isFavorite = false,
-        imageUrl = "imageUrl",
-        name = "name",
-        coordinate = secondLatLng,
-        desc = "desc"
-    ))
+    private val firstVenueList = listOf(
+        Venue(
+            id = "first",
+            isFavorite = false,
+            imageUrl = "imageUrl",
+            name = "name",
+            coordinate = firstLatLng,
+            desc = "desc"
+        )
+    )
+    private val secondVenueList = listOf(
+        Venue(
+            id = "second",
+            isFavorite = false,
+            imageUrl = "imageUrl",
+            name = "name",
+            coordinate = secondLatLng,
+            desc = "desc"
+        )
+    )
 
     @Test
     fun `should start fetching venues`() = coroutinesTestRule.testDispatcher.runBlockingTest {
@@ -125,6 +129,24 @@ class HomeViewModelTest : BaseArchTest() {
         val venue = firstVenueList.first()
         whenever(addFavoriteVenueUseCase(venue)).thenReturn(Err(VenueAddFailure))
         homeViewModel.onAddFavoriteVenue(venue)
+        val actual = homeViewModel.venueOperationResultListener.getOrAwaitValue()
+        Truth.assertThat(actual).isEqualTo(VenueAddFailure)
+    }
+
+    @Test
+    fun `should remove venue`() = coroutinesTestRule.testDispatcher.runBlockingTest {
+        val venue = firstVenueList.first()
+        whenever(removeFavoriteVenueUseCase(venue.id)).thenReturn(Ok(Unit))
+        homeViewModel.onRemoveFavoriteVenue(venue.id)
+        val actual = homeViewModel.venueOperationResultListener.getOrAwaitValue()
+        Truth.assertThat(actual).isEqualTo(SucceededVenueOperation)
+    }
+
+    @Test
+    fun `should fail removing a venue`() = coroutinesTestRule.testDispatcher.runBlockingTest {
+        val venue = firstVenueList.first()
+        whenever(removeFavoriteVenueUseCase(venue.id)).thenReturn(Err(VenueAddFailure))
+        homeViewModel.onRemoveFavoriteVenue(venue.id)
         val actual = homeViewModel.venueOperationResultListener.getOrAwaitValue()
         Truth.assertThat(actual).isEqualTo(VenueAddFailure)
     }

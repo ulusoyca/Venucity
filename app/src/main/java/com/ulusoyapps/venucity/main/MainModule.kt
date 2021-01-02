@@ -16,10 +16,21 @@
 
 package com.ulusoyapps.venucity.main
 
+import androidx.lifecycle.ViewModel
+import com.ulusoyapps.venucity.ActivityScope
+import com.ulusoyapps.venucity.ViewModelKey
+import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoMap
 
 /**
  * Feature level module holds all the bindings needed for this feature scoped with [ActivityScope]
  */
 @Module
-abstract class MainModule
+abstract class MainModule {
+    @ActivityScope
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindViewModel(viewModel: MainViewModel): ViewModel
+}
