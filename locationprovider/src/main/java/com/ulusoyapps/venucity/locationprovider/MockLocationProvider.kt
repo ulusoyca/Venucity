@@ -32,18 +32,10 @@ class MockLocationProvider
         val locationList = csvLocationParser.parseCsvFile(R.raw.mock_locations)
         locationList.mapBoth(
             success = { locations ->
-                var counter = 0
                 locations.asSequence()
-                    .repeat()
-                    .takeWhile {
-                        if (numberOfIntervals < 0)
-                            true
-                        else
-                            counter < numberOfIntervals
-                    }
+                    .repeat(numberOfIntervals)
                     .forEach { location ->
-                        counter++
-                        Timber.d("New location lat: ${location.latitude} & lng: ${location.latitude}")
+                        Timber.d("New location lat: ${location.latitude} & lng: ${location.latitude} update interval: $locationUpdateIntervalTimeMillisec")
                         emit(Ok(locationMapper.mapToDataLayerEntity(location)))
                         delay(locationUpdateIntervalTimeMillisec)
                     }
@@ -56,4 +48,9 @@ class MockLocationProvider
 }
 
 // https://stackoverflow.com/questions/48007311/how-do-i-infinitely-repeat-a-sequence-in-kotlin/48024169#48024169
-fun <T> Sequence<T>.repeat() = sequence { while (true) yieldAll(this@repeat) }
+fun <T> Sequence<T>.repeat(n: Int) =
+    if (n < 0) {
+        sequence { while (true) yieldAll(this@repeat) }
+    } else {
+        sequence { repeat(n) { yieldAll(this@repeat) } }
+    }

@@ -15,6 +15,7 @@ import com.ulusoyapps.venucity.domain.interactors.location.GetLiveLocationUseCas
 import com.ulusoyapps.venucity.domain.interactors.venue.AddFavoriteVenueUseCase
 import com.ulusoyapps.venucity.domain.interactors.venue.GetResolvedNearbyVenuesUseCase
 import com.ulusoyapps.venucity.domain.interactors.venue.RemoveFavoriteVenueUseCase
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
@@ -33,6 +34,8 @@ class HomeViewModel
 
     private var maxAmountOfVenues = 15
 
+    private var locationTrackingJob: Job? = null
+
     @VisibleForTesting
     val _uiState = MutableLiveData<VenuesUiState>().apply {
         value = VenuesUiState.Loading
@@ -40,8 +43,9 @@ class HomeViewModel
     val uiState: LiveData<VenuesUiState>
         get() = _uiState
 
-    fun onStartFetchingVenues(locationUpdateInterval: Long, maxAmount: Int) =
-        viewModelScope.launch(dispatcherProvider.io()) {
+    fun onStartFetchingVenues(locationUpdateInterval: Long, maxAmount: Int) {
+        locationTrackingJob?.cancel()
+        locationTrackingJob = viewModelScope.launch(dispatcherProvider.io()) {
             maxAmountOfVenues = maxAmount
             getLiveLocationUseCase(locationUpdateInterval).flatMapLatest { locationResult ->
                 locationResult.mapBoth(
@@ -65,6 +69,7 @@ class HomeViewModel
                 )
             }
         }
+    }
 
     fun onAddFavoriteVenue(venue: Venue) {
         viewModelScope.launch(dispatcherProvider.io()) {
@@ -116,6 +121,12 @@ class HomeViewModel
                 }
             )
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        locationTrackingJob?.cancel()
+        locationTrackingJob = null
     }
 }
 

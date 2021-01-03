@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocationRepository {
     suspend fun getLiveLocation(
-        locationUpdateIntervalTimeMillisec: Long = 1000,
+        locationUpdateIntervalTimeMillisec: Long,
         numberOfIntervals: Int = -1,
     ): Flow<Result<Location, LocationMessage>>
 }
