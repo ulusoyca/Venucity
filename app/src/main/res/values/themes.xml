@@ -18,9 +18,9 @@
     <!-- Base application theme. -->
     <style name="Theme.Venucity" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="background">@color/cultured</item>
-        <item name="colorOnBackground">@color/black</item>
+        <item name="colorOnBackground">@color/black_olive</item>
         <item name="colorSurface">@color/white</item>
-        <item name="colorOnSurface">@color/black</item>
+        <item name="colorOnSurface">@color/black_olive</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/coral</item>
         <item name="colorPrimaryVariant">@color/flame</item>
