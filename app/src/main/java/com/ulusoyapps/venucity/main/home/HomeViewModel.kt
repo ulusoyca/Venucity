@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.main
+package com.ulusoyapps.venucity.main.home
 
 import androidx.lifecycle.*
 import com.github.michaelbull.result.mapBoth
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel
+class HomeViewModel
 @Inject constructor(
     private val getLiveLocationUseCase: GetLiveLocationUseCase,
     private val addFavoriteVenueUseCase: AddFavoriteVenueUseCase,

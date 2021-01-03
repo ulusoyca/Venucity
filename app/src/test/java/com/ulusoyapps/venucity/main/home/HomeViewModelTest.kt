@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.main
+package com.ulusoyapps.venucity.main.home
 
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
@@ -15,14 +15,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
-class MainViewModelTest : BaseArchTest() {
+class HomeViewModelTest : BaseArchTest() {
 
     private val getLiveLocationUseCase: GetLiveLocationUseCase = mock()
     private val addFavoriteVenueUseCase: AddFavoriteVenueUseCase = mock()
     private val removeFavoriteVenueUseCase: RemoveFavoriteVenueUseCase = mock()
     private val getResolvedNearbyVenuesUseCase: GetResolvedNearbyVenuesUseCase = mock()
 
-    private val homeViewModel = MainViewModel(
+    private val homeViewModel = HomeViewModel(
         getLiveLocationUseCase,
         addFavoriteVenueUseCase,
         removeFavoriteVenueUseCase,
