@@ -5,15 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ulusoyapps.venucity.databinding.FragmentHomeBinding
-import com.ulusoyapps.venucity.domain.entities.SuccessfulVenueOperation
 import com.ulusoyapps.venucity.main.home.epoxy.HomeEpoxyController
 import dagger.android.support.DaggerFragment
-import timber.log.Timber
 import javax.inject.Inject
 
 class HomeFragment : DaggerFragment() {
@@ -46,19 +43,20 @@ class HomeFragment : DaggerFragment() {
         binding.recyclerView.setController(controller)
 
         with(viewModel) {
-            nearbyVenues.observe(
+            uiState.observe(
                 viewLifecycleOwner,
-                Observer { venues ->
-                    Timber.d("Updating venues...")
-                    controller.updateData(venues)
-                }
-            )
-
-            venueOperationResultListener.observe(
-                viewLifecycleOwner,
-                Observer { message ->
-                    if (message is SuccessfulVenueOperation) {
-                        Timber.d("Successful venue operation")
+                { state ->
+                    when (state) {
+                        is VenuesUiState.Success -> {
+                            binding.loadingAnimation.visibility = View.GONE
+                            controller.updateData(state.venues)
+                        }
+                        is VenuesUiState.Error -> {
+                            binding.loadingAnimation.visibility = View.GONE
+                        }
+                        VenuesUiState.Loading -> {
+                            binding.loadingAnimation.visibility = View.VISIBLE
+                        }
                     }
                 }
             )

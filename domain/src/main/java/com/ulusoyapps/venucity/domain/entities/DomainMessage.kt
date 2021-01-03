@@ -7,10 +7,6 @@ object VenueAddFailure : VenueMessage()
 object VenueDoesntExist : VenueMessage()
 object VenuesFetchError : VenueMessage()
 
-open class SuccessfulVenueOperation : VenueMessage()
-class FavoriteVenueInsertionSuccess(val venue: Venue) : SuccessfulVenueOperation()
-class FavoriteVenueRemovalSuccess(val venue: Venue) : SuccessfulVenueOperation()
-
 object NetworkError : VenueMessage()
 object HttpError : VenueMessage()
 

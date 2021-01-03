@@ -1,15 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ulusoyapps.venucity.ui.AutoClearEpoxyRecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recyclerView"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginStart="@dimen/size_spacing_medium"
-    android:layout_marginTop="@dimen/size_spacing_medium"
-    android:layout_marginEnd="@dimen/size_spacing_medium"
-    android:layout_marginBottom="@dimen/size_spacing_large"
-    android:orientation="vertical" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_spacing_medium"
+                android:layout_marginTop="@dimen/size_spacing_medium"
+                android:layout_marginEnd="@dimen/size_spacing_medium"
+                android:text="@string/nearby_restaurants"
+                style="@style/TextAppearance.VenucityTextStyles.Subtitle1"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_animation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frame"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_lottie_anim"
+            app:lottie_speed="2.5" />
+
+        <com.ulusoyapps.venucity.ui.AutoClearEpoxyRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size_spacing_medium"
+            android:layout_marginEnd="@dimen/size_spacing_medium"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frame" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
