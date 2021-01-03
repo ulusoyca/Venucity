@@ -11,7 +11,7 @@ import com.ulusoyapps.venucity.datasource.location.entities.DataLayerLocation
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationNotAvailable
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationReadError
-import com.ulusoyapps.venucity.datasource.entities.DataLayerMessageMapper
+import com.ulusoyapps.venucity.datasource.mapper.DataLayerMessageMapper
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMapper
 import com.ulusoyapps.venucity.domain.entities.LatLng
 import com.ulusoyapps.venucity.domain.entities.Location

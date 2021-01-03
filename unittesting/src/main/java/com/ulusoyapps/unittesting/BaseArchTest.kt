@@ -5,7 +5,9 @@ import android.content.res.Resources
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -69,7 +71,7 @@ abstract class BaseArchTest {
     // https://developer.android.com/codelabs/advanced-android-kotlin-training-testing-basics#8
     fun <T> LiveData<T>.getOrAwaitValue(
         time: Long = 2,
-        timeUnit: TimeUnit = SECONDS,
+        timeUnit: TimeUnit = TimeUnit.SECONDS,
         afterObserve: () -> Unit = {}
     ): T {
         var data: T? = null

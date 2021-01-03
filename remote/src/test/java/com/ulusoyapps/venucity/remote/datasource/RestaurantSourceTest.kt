@@ -38,7 +38,7 @@ class RestaurantSourceTest : BaseArchTest() {
             "Turning a catastrophe into something delicious!",
             "https://prod-wolt-venue-images-cdn.wolt.com/5fb3e183624955b918c7bcd2/8baa8c84-2a47-11eb-b65f-e633568e2c00_goodastrophe.jpg",
             DataLayerLatLng(14.5206209, 35.8155991),
-            isFavorite = false
+            isFavorite = null
         ),
         DataLayerVenue(
             "5fdb51789525083f5b218a8a",
@@ -46,7 +46,7 @@ class RestaurantSourceTest : BaseArchTest() {
             "Serving traditional Maltese food and snacks",
             "https://prod-wolt-venue-images-cdn.wolt.com/5fdb4fdeb25521d5d2f517fd/9ea1626c-4064-11eb-9f03-9abb74d3858c_menu_img_1959_crazy_bites.jpg",
             DataLayerLatLng(14.474417, 35.8328225),
-            isFavorite = false
+            isFavorite = null
         ),
     )
 

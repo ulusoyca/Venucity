@@ -1,7 +1,7 @@
 package com.ulusoyapps.venucity.datasource.location
 
 import com.github.michaelbull.result.*
-import com.ulusoyapps.venucity.datasource.entities.DataLayerMessageMapper
+import com.ulusoyapps.venucity.datasource.mapper.DataLayerMessageMapper
 import com.ulusoyapps.venucity.datasource.location.datasource.LocationDataSource
 import com.ulusoyapps.venucity.datasource.location.mapper.LocationMapper
 import com.ulusoyapps.venucity.domain.entities.Location

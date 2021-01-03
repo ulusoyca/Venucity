@@ -2,7 +2,7 @@ package com.ulusoyapps.venucity.datasource.venue
 
 import com.github.michaelbull.result.*
 import com.ulusoyapps.coroutines.DispatcherProvider
-import com.ulusoyapps.venucity.datasource.entities.DataLayerMessageMapper
+import com.ulusoyapps.venucity.datasource.mapper.DataLayerMessageMapper
 import com.ulusoyapps.venucity.datasource.mapper.LatLngMapper
 import com.ulusoyapps.venucity.datasource.venue.datasource.VenueDataSource
 import com.ulusoyapps.venucity.datasource.venue.mapper.VenueMapper
@@ -85,7 +85,6 @@ class VenueDataRepository
             },
             failure = { message ->
                 val error = venueMessageMapper.mapToDomainEntity(message)
-                assert(error is VenueMessage)
                 Err(error as VenueMessage)
             }
         )

@@ -8,6 +8,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.ulusoyapps.unittesting.BaseArchTest
 import com.ulusoyapps.venucity.datasource.entities.*
+import com.ulusoyapps.venucity.datasource.mapper.DataLayerMessageMapper
 import com.ulusoyapps.venucity.datasource.mapper.LatLngMapper
 import com.ulusoyapps.venucity.datasource.venue.datasource.VenueDataSource
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
@@ -55,7 +56,6 @@ class VenueDataRepositoryTest : BaseArchTest() {
         isFavorite = true,
     )
 
-    private val latLng = coordinate
     private val maxAmount = 15
 
     private val localVenueId1 = Venue(
@@ -197,13 +197,13 @@ class VenueDataRepositoryTest : BaseArchTest() {
             Ok(remoteDataLayerVenues)
         )
         whenever(venueMapper.mapToDomainEntityList(remoteDataLayerVenues)).thenReturn(remoteDomainLayerVenues)
-        val actual = venueDataRepository.getNearbyVenues(latLng, maxAmount)
+        val actual = venueDataRepository.getNearbyVenues(coordinate, maxAmount)
         Truth.assertThat(actual).isEqualTo(Ok(listOf(remoteVenueId1, remoteVenueId2)))
     }
 
     @Test
     fun getResolvedNearbyVenues() = coroutinesTestRule.testDispatcher.runBlockingTest {
-
+        whenever(latLngMapper.mapToDataLayerEntity(coordinate)).thenReturn(dataLayerCoordinate)
         whenever(remoteVenueDatasource.getNearbyVenues(dataLayerCoordinate, maxAmount)).thenReturn(
             Ok(remoteDataLayerVenues)
         )
@@ -214,7 +214,7 @@ class VenueDataRepositoryTest : BaseArchTest() {
         )
         whenever(venueMapper.mapToDomainEntityList(remoteDataLayerVenues)).thenReturn(remoteDomainLayerVenues)
         whenever(venueMapper.mapToDomainEntityList(localDataLayerVenues)).thenReturn(localDomainLayerVenues)
-        venueDataRepository.getResolvedNearbyVenues(latLng, maxAmount)
+        venueDataRepository.getResolvedNearbyVenues(coordinate, maxAmount)
             .collectIndexed { _, value ->
                 val value1 = remoteVenueId1.copy(isFavorite = true)
                 val value2 = remoteVenueId2.copy(isFavorite = false)
