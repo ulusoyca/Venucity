@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.ulusoyapps.venucity.databinding.ActivityMainBinding
 import dagger.android.support.DaggerAppCompatActivity
 
-
 class MainActivity : DaggerAppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

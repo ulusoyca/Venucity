@@ -1,5 +1,8 @@
 package com.ulusoyapps.venucity.remote.mapper
-import com.ulusoyapps.venucity.datasource.entities.*
+import com.ulusoyapps.venucity.datasource.entities.DataLayerHttpError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerMessage
+import com.ulusoyapps.venucity.datasource.entities.DataLayerNetworkError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenuesFetchError
 import com.ulusoyapps.venucity.remote.entities.HttpError
 import com.ulusoyapps.venucity.remote.entities.NetworkError
 import com.ulusoyapps.venucity.remote.entities.RemoteVenueMessage

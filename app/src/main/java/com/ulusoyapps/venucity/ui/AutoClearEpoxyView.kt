@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.main.ui
+package com.ulusoyapps.venucity.ui
 
 import android.content.Context
 import android.util.AttributeSet

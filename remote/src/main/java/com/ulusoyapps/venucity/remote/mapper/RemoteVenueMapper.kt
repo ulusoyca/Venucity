@@ -2,7 +2,11 @@ package com.ulusoyapps.venucity.remote.mapper
 
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
-import com.ulusoyapps.venucity.remote.entities.*
+import com.ulusoyapps.venucity.remote.entities.ActiveMenu
+import com.ulusoyapps.venucity.remote.entities.Restaurant
+import com.ulusoyapps.venucity.remote.entities.RestaurantDesc
+import com.ulusoyapps.venucity.remote.entities.RestaurantLocation
+import com.ulusoyapps.venucity.remote.entities.RestaurantName
 import javax.inject.Inject
 
 class RemoteVenueMapper

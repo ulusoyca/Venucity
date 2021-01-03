@@ -16,6 +16,7 @@
 
 package com.ulusoyapps.venucity.main
 import com.ulusoyapps.venucity.ActivityScope
+import com.ulusoyapps.venucity.main.home.HomeFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -25,6 +26,7 @@ abstract class MainActivityModule {
     @ContributesAndroidInjector(
         modules = [
             MainModule::class,
+            HomeFragmentModule::class,
         ]
     )
     abstract fun contributeMainActivityInjector(): MainActivity

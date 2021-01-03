@@ -3,7 +3,10 @@ package com.ulusoyapps.venucity.locationprovider.mapper
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationMessage
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationNotAvailable
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationReadError
-import com.ulusoyapps.venucity.locationprovider.entity.*
+import com.ulusoyapps.venucity.locationprovider.entity.LocationProviderMessage
+import com.ulusoyapps.venucity.locationprovider.entity.SourceEmpty
+import com.ulusoyapps.venucity.locationprovider.entity.SourceNotFound
+import com.ulusoyapps.venucity.locationprovider.entity.SourceReadError
 import javax.inject.Inject
 
 class LocationMessageMapper

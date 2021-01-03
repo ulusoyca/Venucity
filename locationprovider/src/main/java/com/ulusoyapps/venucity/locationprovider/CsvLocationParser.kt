@@ -4,10 +4,15 @@ import androidx.annotation.RawRes
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.Result
-import com.ulusoyapps.venucity.locationprovider.entity.*
+import com.ulusoyapps.venucity.locationprovider.entity.LocationProviderMessage
+import com.ulusoyapps.venucity.locationprovider.entity.MockLocation
+import com.ulusoyapps.venucity.locationprovider.entity.SourceEmpty
+import com.ulusoyapps.venucity.locationprovider.entity.SourceNotFound
+import com.ulusoyapps.venucity.locationprovider.entity.SourceReadError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.*
+import java.io.FileNotFoundException
+import java.io.IOException
 import javax.inject.Inject
 
 class CsvLocationParser

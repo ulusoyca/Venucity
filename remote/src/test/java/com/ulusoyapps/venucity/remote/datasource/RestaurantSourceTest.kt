@@ -10,11 +10,11 @@ import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
 import com.ulusoyapps.venucity.remote.mapper.RemoteVenueMapper
 import com.ulusoyapps.venucity.remote.mapper.RemoteVenueMessageMapper
 import com.ulusoyapps.venucity.remote.retrofit.RestaurantService
+import junit.framework.Assert.assertNotNull
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Retrofit

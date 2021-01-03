@@ -7,7 +7,11 @@ import com.google.common.truth.Truth
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.ulusoyapps.unittesting.BaseArchTest
-import com.ulusoyapps.venucity.domain.entities.*
+import com.ulusoyapps.venucity.domain.entities.LatLng
+import com.ulusoyapps.venucity.domain.entities.Latitude
+import com.ulusoyapps.venucity.domain.entities.Location
+import com.ulusoyapps.venucity.domain.entities.LocationMessage
+import com.ulusoyapps.venucity.domain.entities.Longitude
 import com.ulusoyapps.venucity.domain.repositories.location.LocationRepository
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.flow.flow

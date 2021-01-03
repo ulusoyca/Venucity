@@ -38,8 +38,22 @@ android {
             viewBinding true
         }
 
-        kotlinOptions {
-            jvmTarget = "1.8"
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+
+        buildTypes {
+            release {
+                minifyEnabled true
+                shrinkResources true
+                proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            }
+            debug {
+                minifyEnabled false
+                debuggable true
+            }
         }
     }
 }
@@ -83,6 +97,7 @@ dependencies {
     implementation "com.airbnb.android:epoxy:$epoxy_version"
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
 
+    implementation "io.coil-kt:coil:$coil_version"
 
     implementation "com.google.android.material:material:$material_version"
 

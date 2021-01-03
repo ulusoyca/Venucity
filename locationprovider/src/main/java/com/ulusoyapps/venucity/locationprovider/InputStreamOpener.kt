@@ -3,8 +3,7 @@ package com.ulusoyapps.venucity.locationprovider
 import android.content.Context
 import android.net.Uri
 import androidx.annotation.RawRes
-import com.ulusoyapps.venucity.locationprovider.entity.*
-import java.io.*
+import java.io.InputStream
 import javax.inject.Inject
 
 class InputStreamOpener
