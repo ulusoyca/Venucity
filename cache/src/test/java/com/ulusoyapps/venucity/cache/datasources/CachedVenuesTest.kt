@@ -11,9 +11,9 @@ import com.ulusoyapps.venucity.cache.entities.*
 import com.ulusoyapps.venucity.cache.mapper.CacheVenueMapper
 import com.ulusoyapps.venucity.cache.mapper.CachedVenueMessageMapper
 import com.ulusoyapps.venucity.datasource.entities.DataLayerLatLng
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueAddFailure
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenuesFetchError
 import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenue
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenueAddFailure
-import com.ulusoyapps.venucity.datasource.venue.entities.DataLayerVenuesFetchError
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking

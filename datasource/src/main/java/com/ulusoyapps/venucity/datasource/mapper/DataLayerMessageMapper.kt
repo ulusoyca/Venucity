@@ -1,6 +1,13 @@
-package com.ulusoyapps.venucity.datasource.entities
+package com.ulusoyapps.venucity.datasource.mapper
 
-import com.ulusoyapps.venucity.datasource.mapper.EntityMapper
+import com.ulusoyapps.venucity.datasource.entities.DataLayerHttpError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationNotAvailable
+import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationReadError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerMessage
+import com.ulusoyapps.venucity.datasource.entities.DataLayerNetworkError
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueAddFailure
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenueDoesntExist
+import com.ulusoyapps.venucity.datasource.entities.DataLayerVenuesFetchError
 import com.ulusoyapps.venucity.domain.entities.*
 import javax.inject.Inject
 
