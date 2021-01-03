@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/nearbyVenues"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_spacing_medium"
@@ -52,6 +53,53 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frame" />
+
+        <ImageView
+            android:id="@+id/errorImage"
+            android:layout_marginTop="@dimen/size_spacing_xxxxxlarge"
+            android:layout_width="@dimen/error_image_height"
+            android:layout_height="@dimen/error_image_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/error_case"
+            />
+
+        <TextView
+            android:id="@+id/errorText"
+            style="@style/TextAppearance.VenucityTextStyles.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_spacing_xxlarge"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/errorImage"
+            tools:layout_editor_absoluteX="16dp"
+            android:text="@string/ooops" />
+
+        <TextView
+            android:id="@+id/errorTextDesc"
+            style="@style/TextAppearance.VenucityTextStyles.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@+id/errorText"
+            tools:layout_editor_absoluteX="16dp"
+            tools:text="@string/network_error" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/successGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="recyclerView,frame" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/failGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="errorTextDesc,errorText,errorImage"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
