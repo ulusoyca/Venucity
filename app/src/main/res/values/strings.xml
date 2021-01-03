@@ -3,4 +3,10 @@
     <string name="add_to_favs">Add to favorites</string>
     <string name="remove_from_favs">Remove from favorites</string>
     <string name="nearby_restaurants">Nearby Restaurants</string>
+
+    <string name="network_error">No network connection</string>
+    <string name="http_error">Could not connect to service</string>
+    <string name="venue_message">Oops, something went wrong</string>
+    <string name="location_message">Could not get location</string>
+    <string name="ooops">Ooops!</string>
 </resources>

@@ -3,4 +3,5 @@
     <!-- Dimensions for generic spacings.
 These can be used for paddings and margins, but also for view heights and widths. -->
     <dimen name="venue_card_height">100dp</dimen>
+    <dimen name="error_image_height">200dp</dimen>
 </resources>

@@ -8,7 +8,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.ulusoyapps.venucity.R
 import com.ulusoyapps.venucity.databinding.FragmentHomeBinding
+import com.ulusoyapps.venucity.domain.entities.HttpError
+import com.ulusoyapps.venucity.domain.entities.LocationMessage
+import com.ulusoyapps.venucity.domain.entities.NetworkError
+import com.ulusoyapps.venucity.domain.entities.VenueAddFailure
+import com.ulusoyapps.venucity.domain.entities.VenueMessage
 import com.ulusoyapps.venucity.main.home.epoxy.HomeEpoxyController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -47,20 +54,47 @@ class HomeFragment : DaggerFragment() {
                 viewLifecycleOwner,
                 { state ->
                     when (state) {
-                        is VenuesUiState.Success -> {
-                            binding.loadingAnimation.visibility = View.GONE
-                            controller.updateData(state.venues)
-                        }
-                        is VenuesUiState.Error -> {
-                            binding.loadingAnimation.visibility = View.GONE
-                        }
-                        VenuesUiState.Loading -> {
-                            binding.loadingAnimation.visibility = View.VISIBLE
-                        }
+                        is VenuesUiState.Success -> handleSuccess(controller, state)
+                        is VenuesUiState.Error -> handleError(state)
+                        VenuesUiState.Loading -> handleLoading()
                     }
                 }
             )
             onStartFetchingVenues(10000, 15)
+        }
+    }
+
+    private fun handleLoading() {
+        binding.loadingAnimation.visibility = View.VISIBLE
+        binding.failGroup.visibility = View.GONE
+        binding.successGroup.visibility = View.GONE
+    }
+
+    private fun handleSuccess(
+        controller: HomeEpoxyController,
+        state: VenuesUiState.Success
+    ) {
+        binding.loadingAnimation.visibility = View.GONE
+        binding.failGroup.visibility = View.GONE
+        binding.successGroup.visibility = View.VISIBLE
+        controller.updateData(state.venues)
+    }
+
+    private fun handleError(state: VenuesUiState.Error) {
+        binding.loadingAnimation.visibility = View.GONE
+        val messageResId: Int = when (state.message) {
+            is NetworkError -> R.string.network_error
+            is HttpError -> R.string.http_error
+            is VenueMessage -> R.string.venue_message
+            is LocationMessage -> R.string.location_message
+        }
+        if (state.message is VenueAddFailure) {
+            Snackbar.make(binding.root, getString(messageResId), Snackbar.LENGTH_LONG).show()
+        } else {
+            binding.errorTextDesc.text = getText(messageResId)
+            binding.loadingAnimation.visibility = View.GONE
+            binding.failGroup.visibility = View.VISIBLE
+            binding.successGroup.visibility = View.GONE
         }
     }
 }
