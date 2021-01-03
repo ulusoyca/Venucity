@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimensions for generic spacings.
+These can be used for paddings and margins, but also for view heights and widths. -->
+    <dimen name="venue_card_height">100dp</dimen>
+</resources>

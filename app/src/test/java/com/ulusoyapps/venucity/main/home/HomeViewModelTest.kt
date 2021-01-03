@@ -1,4 +1,4 @@
-package com.ulusoyapps.venucity.main
+package com.ulusoyapps.venucity.main.home
 
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
@@ -6,7 +6,15 @@ import com.google.common.truth.Truth
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.ulusoyapps.unittesting.BaseArchTest
-import com.ulusoyapps.venucity.domain.entities.*
+import com.ulusoyapps.venucity.domain.entities.FavoriteVenueInsertionSuccess
+import com.ulusoyapps.venucity.domain.entities.FavoriteVenueRemovalSuccess
+import com.ulusoyapps.venucity.domain.entities.LatLng
+import com.ulusoyapps.venucity.domain.entities.Location
+import com.ulusoyapps.venucity.domain.entities.LocationNotAvailable
+import com.ulusoyapps.venucity.domain.entities.SuccessfulVenueOperation
+import com.ulusoyapps.venucity.domain.entities.Venue
+import com.ulusoyapps.venucity.domain.entities.VenueAddFailure
+import com.ulusoyapps.venucity.domain.entities.VenuesFetchError
 import com.ulusoyapps.venucity.domain.interactors.location.GetLiveLocationUseCase
 import com.ulusoyapps.venucity.domain.interactors.venue.AddFavoriteVenueUseCase
 import com.ulusoyapps.venucity.domain.interactors.venue.GetResolvedNearbyVenuesUseCase
@@ -15,34 +23,22 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
-class MainViewModelTest : BaseArchTest() {
+class HomeViewModelTest : BaseArchTest() {
 
     private val getLiveLocationUseCase: GetLiveLocationUseCase = mock()
     private val addFavoriteVenueUseCase: AddFavoriteVenueUseCase = mock()
     private val removeFavoriteVenueUseCase: RemoveFavoriteVenueUseCase = mock()
     private val getResolvedNearbyVenuesUseCase: GetResolvedNearbyVenuesUseCase = mock()
 
-    private val homeViewModel = MainViewModel(
+    private val homeViewModel = HomeViewModel(
         getLiveLocationUseCase,
         addFavoriteVenueUseCase,
         removeFavoriteVenueUseCase,
         getResolvedNearbyVenuesUseCase,
         coroutinesTestRule.testDispatcherProvider,
     )
-    private val locations: List<Location> = listOf(
-        Location(
-            LatLng(0.0, 0.0),
-            1,
-        ),
-        Location(
-            LatLng(1.0, 1.0),
-            2,
-        ),
-    )
-    private val locationErrorMessage = LocationMessage()
 
     private val firstLatLng = LatLng(0.0, 0.0)
-    private val secondLatLng = LatLng(1.0, 1.0)
     private val firstVenueList = listOf(
         Venue(
             id = "first",
@@ -50,16 +46,6 @@ class MainViewModelTest : BaseArchTest() {
             imageUrl = "imageUrl",
             name = "name",
             coordinate = firstLatLng,
-            desc = "desc"
-        )
-    )
-    private val secondVenueList = listOf(
-        Venue(
-            id = "second",
-            isFavorite = false,
-            imageUrl = "imageUrl",
-            name = "name",
-            coordinate = secondLatLng,
             desc = "desc"
         )
     )
@@ -81,7 +67,7 @@ class MainViewModelTest : BaseArchTest() {
         val actualVenues = homeViewModel.nearbyVenues.getOrAwaitValue()
         val actualVenueOperationResult = homeViewModel.venueOperationResultListener.getOrAwaitValue()
         Truth.assertThat(actualVenues).isEqualTo(firstVenueList)
-        Truth.assertThat(actualVenueOperationResult).isEqualTo(SucceededVenueOperation)
+        Truth.assertThat(actualVenueOperationResult).isInstanceOf(SuccessfulVenueOperation::class.java)
     }
 
     @Test
@@ -121,7 +107,7 @@ class MainViewModelTest : BaseArchTest() {
         whenever(addFavoriteVenueUseCase(venue)).thenReturn(Ok(Unit))
         homeViewModel.onAddFavoriteVenue(venue)
         val actual = homeViewModel.venueOperationResultListener.getOrAwaitValue()
-        Truth.assertThat(actual).isEqualTo(SucceededVenueOperation)
+        Truth.assertThat(actual).isInstanceOf(FavoriteVenueInsertionSuccess::class.java)
     }
 
     @Test
@@ -137,16 +123,16 @@ class MainViewModelTest : BaseArchTest() {
     fun `should remove venue`() = coroutinesTestRule.testDispatcher.runBlockingTest {
         val venue = firstVenueList.first()
         whenever(removeFavoriteVenueUseCase(venue.id)).thenReturn(Ok(Unit))
-        homeViewModel.onRemoveFavoriteVenue(venue.id)
+        homeViewModel.onRemoveFavoriteVenue(venue)
         val actual = homeViewModel.venueOperationResultListener.getOrAwaitValue()
-        Truth.assertThat(actual).isEqualTo(SucceededVenueOperation)
+        Truth.assertThat(actual).isInstanceOf(FavoriteVenueRemovalSuccess::class.java)
     }
 
     @Test
     fun `should fail removing a venue`() = coroutinesTestRule.testDispatcher.runBlockingTest {
         val venue = firstVenueList.first()
         whenever(removeFavoriteVenueUseCase(venue.id)).thenReturn(Err(VenueAddFailure))
-        homeViewModel.onRemoveFavoriteVenue(venue.id)
+        homeViewModel.onRemoveFavoriteVenue(venue)
         val actual = homeViewModel.venueOperationResultListener.getOrAwaitValue()
         Truth.assertThat(actual).isEqualTo(VenueAddFailure)
     }

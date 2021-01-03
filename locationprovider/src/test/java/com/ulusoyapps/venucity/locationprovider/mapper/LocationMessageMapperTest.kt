@@ -6,7 +6,6 @@ import com.ulusoyapps.venucity.datasource.entities.DataLayerLocationReadError
 import com.ulusoyapps.venucity.locationprovider.entity.SourceEmpty
 import com.ulusoyapps.venucity.locationprovider.entity.SourceNotFound
 import com.ulusoyapps.venucity.locationprovider.entity.SourceReadError
-import org.junit.Assert.*
 import org.junit.Test
 
 class LocationMessageMapperTest {

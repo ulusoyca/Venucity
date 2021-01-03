@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dimensions for generic spacings.
+These can be used for paddings and margins, but also for view heights and widths. -->
+    <dimen name="size_spacing_xxxxxlarge">64dp</dimen>
+    <dimen name="size_spacing_xxxxlarge">56dp</dimen>
+    <dimen name="size_spacing_xxxlarge">48dp</dimen>
+    <dimen name="size_spacing_xxlarge">40dp</dimen>
+    <dimen name="size_spacing_xlarge">32dp</dimen>
+    <dimen name="size_spacing_large">24dp</dimen>
+    <dimen name="size_spacing_medium">16dp</dimen>
+    <dimen name="size_spacing_between_s_and_m">12dp</dimen>
+    <dimen name="size_spacing_small">8dp</dimen>
+    <dimen name="size_spacing_xsmall">4dp</dimen>
+    <dimen name="size_spacing_xxsmall">2dp</dimen>
+    <dimen name="size_spacing_xxxsmall">1dp</dimen>
+    <dimen name="size_spacing_zero">0dp</dimen>
+
+    <dimen name="size_list_header">96dp</dimen>>
+
+    <!-- Icon sizes -->
+    <dimen name="size_icon_standard">40dp</dimen>
+    <dimen name="size_icon_xxxlarge">72dp</dimen>
+    <dimen name="size_icon_xxlarge">64dp</dimen>
+    <dimen name="size_icon_xlarge">48dp</dimen>
+    <dimen name="size_icon_large">32dp</dimen>
+    <dimen name="size_icon_medium">24dp</dimen>
+    <dimen name="size_icon_medium_small">20dp</dimen>
+    <dimen name="size_icon_small">16dp</dimen>
+    <dimen name="size_icon_xsmall">14dp</dimen>
+    <dimen name="size_icon_xxsmall">10dp</dimen>
+</resources>
