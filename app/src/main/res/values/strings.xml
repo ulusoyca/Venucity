@@ -2,4 +2,5 @@
     <string name="app_name">Venucity</string>
     <string name="add_to_favs">Add to favorites</string>
     <string name="remove_from_favs">Remove from favorites</string>
+    <string name="nearby_restaurants">Nearby Restaurants</string>
 </resources>

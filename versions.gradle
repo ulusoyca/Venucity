@@ -61,4 +61,5 @@ ext {
     okhttp_version = "4.9.0"
     epoxy_version = "4.3.1"
     coil_version = "1.1.0"
+    lottie_version = "3.6.0"
 }
