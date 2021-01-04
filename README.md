@@ -10,12 +10,13 @@
 
 Venucity Android project lists the nearby venues with an option to save them as favorite. 
 
-![screencapture.gif](screenshots/screencapture.gif)
+![screencapture_resized.gif](screenshots/screencapture_resized.gif)
 
 The application consists of following main components:
-<li><b>remote</b> fetches JSON files from a web server</li> 
-<li><b>cache</b> responsible for database operations</li> 
-<li><b>locationprovider</b> provides mock location data with a given time interval</li> 
+<li><b>remote</b> fetches JSON files from a web server</li>
+<li><b>cache</b> responsible for database operations</li>
+<li><b>locationprovider</b> provides mock location data with a given time interval</li>
+
 
 MAD Scorecard of the project can be accessed <a href= "https://madscorecard.withgoogle.com/scorecards/2542951502/">here</a>.
 
@@ -25,14 +26,12 @@ Following libraries and concepts are used in this application:
 <li><a href= "https://developer.android.com/topic/libraries/architecture">Android Architecture Components</a> and some of the Jetpack Libraries (ViewModel, LiveData, Lifecycle, Room, Navigation Component, and more)</li> 
 <li>Unit testing with <a href= "https://site.mockito.org/">Mockito</a>, assertions in tests with <a href= "https://truth.dev/">Truth</a></li> 
 <li><a href= "https://github.com/airbnb/epoxy">Epoxy</a> for building screens in a RecyclerView</li> 
-<li><a href= "https://dagger.dev/dev-guide/android.html">Dagger Android</a> for dependency injection</li> 
-<li><a href= "https://dagger.dev/dev-guide/android.html">Dagger Android</a> for dependency injection</li> 
+<li><a href= "https://dagger.dev/dev-guide/android.html">Dagger Android</a> for dependency injection</li>
 <li><a href= "https://developer.android.com/kotlin/flow">Kotlin flows</a> and <a href= "https://developer.android.com/kotlin/coroutines">Kotlin coroutines</a></li> 
 <li><a href= "https://square.github.io/retrofit/">Retrofit</a> HTTP API with <a href= "https://square.github.io/retrofit/">Moshi</a> to parse JSON</li> 
 <li><a href= "https://github.com/michaelbull/kotlin-result">kotlin-result</a> for monad for modelling success (Ok) or failure (Err) operations</li> 
 <li><a href= "https://github.com/coil-kt/coil">coil</a> for image loading</li> 
-<li><a href= "https://github.com/airbnb/lottie-android">lottie-android</a> for Lottie animations</li> 
-<li><a href= "https://github.com/airbnb/lottie-android">lottie-android</a> for Lottie animations</li> 
+<li><a href= "https://github.com/airbnb/lottie-android">lottie-android</a> for Lottie animations</li>
 
 ## Author
 
