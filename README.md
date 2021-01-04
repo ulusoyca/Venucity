@@ -10,15 +10,14 @@
 
 Venucity Android project lists the nearby venues with an option to save them as favorite. 
 
+MAD Scorecard of the project can be accessed <a href= "https://madscorecard.withgoogle.com/scorecards/2542951502/">here</a>.
+
 ![screencapture_resized.gif](screenshots/screencapture_resized.gif)
 
-The application consists of following main components:
+The application data layer consists of 3 following components:
 <li><b>remote</b> fetches JSON files from a web server</li>
 <li><b>cache</b> responsible for database operations</li>
 <li><b>locationprovider</b> provides mock location data with a given time interval</li>
-
-
-MAD Scorecard of the project can be accessed <a href= "https://madscorecard.withgoogle.com/scorecards/2542951502/">here</a>.
 
 Following libraries and concepts are used in this application:
 
