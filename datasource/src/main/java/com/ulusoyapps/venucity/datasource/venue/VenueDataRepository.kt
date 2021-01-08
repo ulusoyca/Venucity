@@ -110,19 +110,10 @@ class VenueDataRepository
         latLng: LatLng,
         maxAmount: Int
     ): Flow<Result<List<Venue>, VenueMessage>> = withContext(dispatcherProvider.io()) {
-        val nearbyVenues = async { getNearbyVenues(latLng, maxAmount) }
-        val favoriteVenues = async { getAllFavoriteVenues() }
-        updatedNearbyVenues(nearbyVenues.await(), favoriteVenues.await())
-    }
-
-    private suspend fun updatedNearbyVenues(
-        allNearby: Result<List<Venue>, VenueMessage>,
-        allFavorite: Flow<Result<List<Venue>, VenueMessage>>
-    ): Flow<Result<List<Venue>, VenueMessage>> = flow {
-        allFavorite.collect { favoriteVenuesResult ->
+        getAllFavoriteVenues().map { favoriteVenuesResult ->
             favoriteVenuesResult.mapBoth(
                 success = { favoriteVenues ->
-                    allNearby.mapBoth(
+                    getNearbyVenues(latLng, maxAmount).mapBoth(
                         success = { nearByVenues ->
                             val updatedList: List<Venue> = nearByVenues.map { nearByVenue ->
                                 nearByVenue.copy(
@@ -132,15 +123,15 @@ class VenueDataRepository
                                     )
                                 )
                             }
-                            emit(Ok(updatedList))
+                            Ok(updatedList)
                         },
                         failure = { message ->
-                            emit(Err(message))
+                            Err(message)
                         }
                     )
                 },
                 failure = { message ->
-                    emit(Err(message))
+                    Err(message)
                 }
             )
         }

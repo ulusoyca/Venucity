@@ -80,7 +80,7 @@ class HomeFragment : DaggerFragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.onStartFetchingVenues(3000, 15)
+        viewModel.onStartFetchingVenues(10000, 15)
     }
 
     override fun onStop() {
