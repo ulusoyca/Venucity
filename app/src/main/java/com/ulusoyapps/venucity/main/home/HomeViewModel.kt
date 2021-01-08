@@ -139,8 +139,16 @@ class HomeViewModel
         }
     }
 
+    fun onStop() {
+        cancelJobs()
+    }
+
     override fun onCleared() {
         super.onCleared()
+        cancelJobs()
+    }
+
+    private fun cancelJobs() {
         locationTrackingJob?.cancel()
         locationTrackingJob = null
     }

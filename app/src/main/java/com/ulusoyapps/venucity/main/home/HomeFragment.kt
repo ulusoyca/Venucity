@@ -75,8 +75,17 @@ class HomeFragment : DaggerFragment() {
                     }
                 }
             )
-            onStartFetchingVenues(10000, 15)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.onStartFetchingVenues(3000, 15)
+    }
+
+    override fun onStop() {
+        viewModel.onStop()
+        super.onStop()
     }
 
     private fun handleLoading() {
